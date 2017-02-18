@@ -1,0 +1,77 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <div (click)="refresh()">
+    <ion-title>Login</ion-title>
+    </div>
+    <ion-buttons end>
+    <div (click)="userAdd()">
+    <ion-icon class="adduser" large item-right name='person-add'></ion-icon>
+    </div>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	 <div class="login-box">
+    <form (ngSubmit)="loginUser()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Username" name="user" [(ngModel)]="user" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>
+            </ion-item>
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
+          
+        </ion-col>
+      </ion-row>
+      
+    </form>
+    <ion-row>
+    <ion-col class="signup-col">
+      <button ion-button class="register-btn" block clear (click)="logoutUser()">Log Out</button>
+    </ion-col>
+    </ion-row>
+  </div>
+
+  <div>
+    <ion-list radio-group *ngIf="dataPresent" >
+
+      <ion-list-header>
+        Saved Usernames
+      </ion-list-header>
+      
+      <ion-card (tap)="select(user.id,user.username,user.password)" (press)="update(user.id,user.username,user.password)" *ngFor="let user of people">
+      <ion-item class="radio" >
+        
+        <ion-label >{{ user.username }}</ion-label>
+        <ion-radio checked="activeId==user.id"></ion-radio>
+        
+      </ion-item>
+      </ion-card>
+
+    </ion-list>
+  </div>
+
+
+</ion-content>
